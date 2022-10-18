@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="es">
+    <head>
+        <title>Alquiler de Motocicletas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link href="../estilos/estilos.css" rel="stylesheet" type="text/css"/>
+        <script src="https://kit.fontawesome.com/26faecba72.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="text/javascript" src="../funciones/clientes.js"></script>
+
+
+    </head>
+    <body>
+        <!-- Navegación -->
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" aria-current="page" href="../index.html">Inicio</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../paginas/administrador.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../paginas/categorias.html">Categorías</a>
+                        </li>   
+                        <li class="nav-item">
+                            <a class="nav-link" href="../paginas/motocicletas.html">Motocicletas</a>
+                        </li>   
+                        <li class="nav-item">
+                            <a class="nav-link" href="../paginas/clientes.html">Clientes</a>
+                        </li>   
+                        <li class="nav-item">
+                            <a class="nav-link" href="../paginas/mensajes.html">Mensajes</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="../paginas/reservas.html">Reservas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../paginas/calificaciones.html">Calificaciones</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <b>Rol administrador</b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="../paginas/administradores.html">Gestión administradores</a></li>
+                                <li><a class="dropdown-item" href="../paginas/reportes.html">Ver reportes</a></li>
+                            </ul>
+                        </li>   
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- CUERPO -->
+        </br>
+        <div class="container text-center">
+            <h1 class="h1Titulos">Gestión de Clientes</h1>
+            <h2 class="h2Subtitulos">
+                A continuación podrás visualizar los clientes registrados en nuestro sistema: Podrás agregar nuevos clientes, actualizar información de ellos o eliminarlos.
+            </h2>
+        </div>
+        </br>
+        
+        <!-- TABLA -->
+        <section class="container" style="displatext-align: center">
+            <div class="text-center">
+                <button type="button" class="btn btn-secondary" onclick="getAllElementos()"> Ver Clientes</button>
+            </div>
+            </br>
+            <div class="col">
+                <table id="tablaClientes" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th style="display:none">Id</th>
+                            <th>Nombre</th>
+                            <th>Edad</th>
+                            <th>Email</th>
+                            <th style="display:none">Contraseña</th>
+                            <th>Mensajes</th>
+                            <th>#Reserva</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+        </br>
+
+        <!-- MODAL1 -->
+        <section class="container text-center" style="displatext-align: center">
+
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalSave">Registrarse</button>
+
+            <!-- Modal -->
+            <div id="modalSave" class="modal fade"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Registrase</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- FORMULARIO -->
+                            <form id="form1">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Nombre: </span>
+                                    <input id="nameClt" type="text" class="form-control" maxlength="45" placeholder="Ingrese el nombre" autocomplete="off" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group date" id="datepicker">
+                                        <label for="ageClt" class="form-label"><span class="input-group-text">Fecha de nacimiento: </span></label>
+                                        <input type="date" class="form-control" id="ageClt"/>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="emailClt" class="form-label"><span class="input-group-text"> Correo electrónico: </span></label>
+                                    <input id="emailClt" type="email" class="form-control" maxlength="45" aria-describedby="emailHelp" placeholder="Ingrese su correo" autocomplete="off" readonly required/>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="passwordClt1" class="form-label"><span class="input-group-text"> Contraseña: </span></label>
+                                    <input id="passwordClt1" type="password" class="form-control" maxlength="45" aria-describedby="emailHelp" placeholder="Ingrese su correo" autocomplete="off" required/>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="passwordClt2" class="form-label"><span class="input-group-text"> Confirmar contraseña: </span></label>
+                                    <input id="passwordClt2" type="password" class="form-control" maxlength="45" aria-describedby="emailHelp" placeholder="Ingrese su correo" autocomplete="off" required/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" onclick="saveElementos()">Guardar</button>
+                                </div>  
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        </br>
+        </br>
+
+        <!-- MODAL2 -->
+        <section class="container text-center" style="displatext-align: center">
+            <!-- Modal -->
+            <div id="modalAct" class="modal fade"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar usuario</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- FORMULARIO -->
+                            <form id="form2">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Id: </span>
+                                    <input id="idC" type="number" class="form-control" autocomplete="off" readonly required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Nombre: </span>
+                                    <input id="nameC" type="text" class="form-control" maxlength="45" placeholder="Ingrese el nombre" autocomplete="off" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group date" id="datepicker">
+                                        <label for="ageC" class="form-label"><span class="input-group-text">Fecha de nacimiento: </span></label>
+                                        <input type="date" class="form-control" id="ageC"/>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="emailC" class="form-label"><span class="input-group-text"> Correo electrónico: </span></label>
+                                    <input id="emailC" type="email" class="form-control" maxlength="45" aria-describedby="emailHelp" placeholder="Ingrese su correo" autocomplete="off" readonly required/>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="passwordC1" class="form-label"><span class="input-group-text"> Contraseña: </span></label>
+                                    <input id="passwordC1" type="password" class="form-control" maxlength="45" aria-describedby="emailHelp" placeholder="Ingrese su contraseña" autocomplete="off" required/>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="passwordC2" class="form-label"><span class="input-group-text"> Confirmar contraseña: </span></label>
+                                    <input id="passwordC2" type="password" class="form-control" maxlength="45" aria-describedby="emailHelp" placeholder="Confirme su contraseña" autocomplete="off" required/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" onclick="updateElementos()">Actualizar</button>
+                                </div> 
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- PIE DE PÁGINA -->
+        <footer
+            class="text-center text-lg-start text-white"
+            style="background-color: #3e4551"> 
+
+            <div class="container p-4 pb-0">
+
+                <section class="mb-3 text-center">
+                    <a
+                        class="btn btn-outline-light btn-floating m-1"
+                        href="https://github.com/juanpineda2022"
+                        role="button"
+                        ><i class="fab fa-github"></i
+                        ></a> 
+                </section>
+
+            </div>
+            <div
+                class="text-center p-3"
+                style="background-color: rgba(0, 0, 0, 0.2)"
+                >
+                ©Juan Santiago Pineda
+
+            </div>
+        </footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    </body>
+</html>

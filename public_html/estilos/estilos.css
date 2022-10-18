@@ -1,0 +1,37 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 16/10/2022, 10:55:01 a. m.
+    Author     : jpine
+*/
+body{
+    font-family: 'EB Garamond', serif;
+}
+
+.h1Titulos{
+    color: #416a59;
+    font-size: 50px;
+}
+.h2Subtitulos{
+    color: #16A57D;
+}
+.contenedor{
+    margin: 0 auto;
+}
+.columna{
+    background: #CEE5D0;
+    margin: 10px;
+    padding: 10px;
+    width: 30%;
+    border-radius: 5px;
+    text-align: center;
+}
+.block{
+    display: inline-block;
+}
+.flex{
+    display: flex;
+    justify-content: space-around;
+}
